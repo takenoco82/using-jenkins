@@ -2,7 +2,7 @@
 set -eux
 
 # usage
-#   curl -sL https://raw.githubusercontent.com/takenoco82/using-jenkins/master/install.sh | sh
+#   curl -sL https://raw.githubusercontent.com/takenoco82/using-jenkins/master/setup/jenkins/install.sh | sh
 
 #
 # CentOSにdocker, docker-composeをインストールする

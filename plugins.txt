@@ -1,1 +1,2 @@
 pipeline-utility-steps 2.2.0
+jobConfigHistory 2.19

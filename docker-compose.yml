@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  jenkins-master:
+    build: .
+    user: root
+    restart: always
+    ports:
+      - "8080:8080"    # ポータルにアクセスするためのポート
+      - "50000:50000"  # スレーブにアクセスするためのポート
+    container_name: jenkins-master
+    hostname: jenkins-master
+    # environment:
+    #   JAVA_OPTS: "-Xmx2048m -XX:MaxPermSize=512m"
+    volumes:
+      # データ永続化
+      - ~/jenkins_home:/var/jenkins_home
+      # ホストマシンのdockerを使う
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - my_networks
+
+networks:
+  my_networks:

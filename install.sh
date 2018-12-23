@@ -53,9 +53,10 @@ function install_git() {
 }
 
 function clone_repository() {
-  cd ~
   rm -rf ~/git/using-jenkins
-  mkdir ~/git &>/dev/null
+  if [[ ! -e ~/git ]]; then
+    mkdir ~/git
+  fi
   cd ~/git
   git clone https://github.com/takenoco82/using-jenkins.git
 }

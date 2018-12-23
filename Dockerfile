@@ -5,6 +5,6 @@ FROM jenkinsci/blueocean:1.9.0
 #   [プラグインインストール済のJenkins Dockerイメージを作成する - 理系学生日記](https://kiririmode.hatenablog.jp/entry/20161207/1481040721)
 USER root
 COPY plugins.txt /usr/share/jenkins/ref/
-RUN /usr/local/bin/install-plugins.sh $(cat /usr/share/jenkins/ref/plugins.txt)
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
 
 USER jenkins

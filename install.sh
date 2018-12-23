@@ -65,4 +65,4 @@ echo start install
 install_docker
 install_git
 clone_repository
-cd ~/git/using-jenkins && make start
+cd ~/git/using-jenkins && make init && make start

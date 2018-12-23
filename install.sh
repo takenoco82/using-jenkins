@@ -64,4 +64,5 @@ function clone_repository() {
 echo start install
 install_docker
 install_git
+clone_repository
 cd ~/git/using-jenkins && make start

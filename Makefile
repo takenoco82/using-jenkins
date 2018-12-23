@@ -1,8 +1,8 @@
 init:
-	docker-compose build
+	cd setup/jenkins && docker-compose build
 
 start:
-	docker-compose up -d
+	cd setup/jenkins && docker-compose up -d
 
 stop:
-	docker-compose stop
+	cd setup/jenkins && docker-compose stop

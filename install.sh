@@ -53,6 +53,7 @@ function install_git() {
 }
 
 function clone_repository() {
+  cd ~
   rm -rf ~/git/using-jenkins
   mkdir ~/git &>/dev/null
   cd ~/git

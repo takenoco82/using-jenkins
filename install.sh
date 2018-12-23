@@ -53,10 +53,9 @@ function install_git() {
 }
 
 function clone_repository() {
-  if [[ ! -e ~/git/using-jenkins/README.md ]]; then
-    mkdir ~/git && cd $_
-    git clone https://github.com/takenoco82/using-jenkins.git
-  fi
+  rm -rf ~/git/using-jenkins
+  mkdir ~/git && cd $_
+  git clone https://github.com/takenoco82/using-jenkins.git
 }
 
 

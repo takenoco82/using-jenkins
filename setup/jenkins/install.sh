@@ -84,3 +84,8 @@ install_git
 clone_repository
 make_volume_dir
 cd ~/git/using-jenkins && make init && make start
+cat <<__EOF__
+
+See on http://JENKINS_SERVER:8080 in your browser
+
+__EOF__

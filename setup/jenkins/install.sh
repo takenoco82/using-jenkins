@@ -68,10 +68,19 @@ function clone_repository() {
   git clone https://github.com/takenoco82/using-jenkins.git
 }
 
+# データ永続化するために Jenkins の /var/jenkins_home をマウントするディレクトリ を作成
+function make_volume_dir() {
+  if [[ ! -e ~/jenkins_home ]]; then
+    mkdir -p ~/jenkins_home
+  fi
+  # そのままだと書き込み権限がなくて怒られるので権限を設定
+  sudo chown 1000 ~/jenkins_home
+}
 
 # main
 echo start install
 install_docker
 install_git
 clone_repository
+make_volume_dir
 cd ~/git/using-jenkins && make init && make start

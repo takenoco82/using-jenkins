@@ -38,6 +38,13 @@ function install_docker() {
       sudo mv docker-compose /usr/local/bin/docker-compose
       sudo chmod +x /usr/local/bin/docker-compose
   fi
+
+  # Add to `docker` group
+  cat /etc/group | grep docker
+  if [[ $? -ne 0 ]]; then
+      sudo groupadd docker
+  fi
+  sudo usermod -aG docker $USER  # 一度 exit する必要があるっぽい
 }
 
 #

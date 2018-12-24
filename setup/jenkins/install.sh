@@ -77,6 +77,14 @@ function make_volume_dir() {
   sudo chown 1000 ~/jenkins_home
 }
 
+# セットアップ時のadminのパスワードを表示する
+function show_initial_admin_password() {
+  if [[ -e /var/jenkins_home/secrets/initialAdminPassword ]]; then
+    password=$(docker exec jenkins-master /bin/bash -c 'cat /var/jenkins_home/secrets/initialAdminPassword')
+    echo Input initial Administrator password: ${password}
+  fi
+}
+
 # main
 echo start install
 install_docker
@@ -89,3 +97,4 @@ cat <<__EOF__
 See on http://JENKINS_SERVER:8080 in your browser
 
 __EOF__
+show_initial_admin_password

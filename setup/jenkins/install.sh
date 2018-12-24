@@ -68,13 +68,20 @@ function clone_repository() {
   git clone https://github.com/takenoco82/using-jenkins.git
 }
 
-# データ永続化するために Jenkins の /var/jenkins_home をマウントするディレクトリ を作成
-function make_volume_dir() {
-  if [[ ! -e ~/jenkins_home ]]; then
-    mkdir -p ~/jenkins_home
+# master・slave間で使用ssh keyを作成する
+function generate_ssh_key() {
+  if [[ ! -e ~/jenkins_home/.ssh ]]; then
+    sudo mkdir -p ~/jenkins_home/.ssh
   fi
+  if [[ ! -e ~/jenkins_home/.ssh/id_rsa ]]; then
+    sudo ssh-keygen -t rsa -b 4096 -f ~/jenkins_home/.ssh/id_rsa -N ''
+    sudo cp -p ~/jenkins_home/.ssh/id_rsa.pub ~/jenkins_home/.ssh/authorized_keys
+  fi
+
   # そのままだと書き込み権限がなくて怒られるので権限を設定
-  sudo chown 1000 ~/jenkins_home
+  sudo chown -R 1000 ~/jenkins_home
+  # authorized_keys はユーザのみしか利用できないようにする
+  sudo chmod 600 ~/jenkins_home/.ssh/authorized_keys
 }
 
 # セットアップ時のadminのパスワードを表示する
@@ -90,7 +97,7 @@ echo start install
 install_docker
 install_git
 clone_repository
-make_volume_dir
+generate_ssh_key
 cd ~/git/using-jenkins && make init && make start
 cat <<__EOF__
 
